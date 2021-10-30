@@ -9,8 +9,8 @@
 void IncEncoder_GPIO_Config( ){
 
 	MyGPIO_Init (GPIOA, 5 , In_Floating , InputMode ) ;
-	MyGPIO_Init (GPIOA, 5 , In_Floating , InputMode ) ;
-	MyGPIO_Init (GPIOA, 5 , In_Floating , InputMode ) ;
+	MyGPIO_Init (GPIOA, 6 , In_Floating , InputMode ) ;
+	MyGPIO_Init (GPIOA, 7 , In_Floating , InputMode ) ;
 
 }
 
