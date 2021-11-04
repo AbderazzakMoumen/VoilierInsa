@@ -78,7 +78,7 @@ void Conf_Girouette(){
 float Get_Angle_Girouette(){
 	float Angle_girouette;
 	Angle_girouette = (float)TIM3->CNT;
-	Angle_girouette = angle_girouette / 2;
+	Angle_girouette = Angle_girouette / 2;
 	return Angle_girouette;
 }
 
