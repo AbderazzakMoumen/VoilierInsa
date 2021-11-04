@@ -1,12 +1,12 @@
 #include "GIROUETTE.h"
+#include "stm32f10x.h"
 
 
-#define PSMAX 0 // Impulsion pour avoir un angle de voile theta maximal
-#define PSMIN 90 // Impulsion pour avoir un angle de voile theta minimal
 
 
 // Configuration broches Codeur sur GPIOA: INDEX->PA5 et CHA->PA6 et CHB->PA7 en INPUT FLOATING
-void IncEncoder_GPIO_Config( ){
+// PA6= TIM3_CH1 et PA7=TIM3_CH2
+void IncEncoder_GPIO_Config(){
 
 	MyGPIO_Init (GPIOA, 5 , In_Floating , InputMode ) ;
 	MyGPIO_Init (GPIOA, 6 , In_Floating , InputMode ) ;
@@ -17,6 +17,7 @@ void IncEncoder_GPIO_Config( ){
 //Mode 3 du Codeur : counting on both TI1 and TI2 edges
 void IncEncoder_TIMER_Mode_3(TIM_TypeDef *Timer){
  
+ 	Timer_Active_Clock (Timer);
 	//Encoder interface mode
 	// To select Encoder Interface mode write SMS=‘001’ in the TIMx_SMCR register if the 
 	// counter is counting on TI2 edges only, SMS=’010’ if it is counting on TI1 edges only and 
@@ -24,17 +25,30 @@ void IncEncoder_TIMER_Mode_3(TIM_TypeDef *Timer){
 	Timer->SMCR &= ~(7 << 0);     // (7 << 0)==(0b111 << 0)
 	Timer->SMCR |= (3 << 0);  // (3 << 0)==(0b011 << 0)
 	Timer->PSC = 0;
-	Timer->ARR = 1440+1;
+	Timer->ARR = 720; //1 tour == 360 périodes sur chaque voie
 
 }
 
 
 // Configuration TIMER Codeur
-void IncEncoder_TIMER_Config( ){
+void IncEncoder_TIMER_Config(){
 
-	Timer_Active_Clock (TIM3);  
+	IncEncoder_GPIO_Config();  
 	IncEncoder_TIMER_Mode_3(TIM3);
-	IncEncoder_GPIO_Config( );
+
+	//Configuration Interruption EXTI PA5
+	(EXTI->IMR) = 0x01<<5 ;
+	// Activation Interruption EXTI sur front montant PA5
+	(EXTI->RTSR)|=(0x01<<5); 
+	// Désactivation Interruption EXTI sur front descendant PA5  
+	(EXTI->FTSR) &= ~(0x01 <<5);
+
+	// Activation Interruption EXTI au niveau du coeur
+	// L’interruption EXTI au niveau du coeur est identifiée par le numéro 23
+	NVIC->ISER[0] = NVIC->ISER[0] | (1 << 23);
+	
+	// Priorité Interruption EXTI
+	NVIC->IP[23]=4;
 
 }
 
@@ -42,34 +56,39 @@ void IncEncoder_TIMER_Config( ){
 // Detection de l'angle zero afin de demarrer le Codeur
 void IncEncoder_AngleZero(){
 
-	while(MyGPIO_Read(GPIOA,5)==0);
+	while (MyGPIO_Read(GPIOA,5) == 0);
+
+	Timer_Start(TIM3);
 
 }
 
 
-// Calcul de Theta
-float Calcul_Theta(volatile unsigned int *alpha){
-	float theta;
-	float aux;
-	aux=*alpha * 360.0 / (1440+1);
-	if (aux<45 || aux>315){
-		theta=0;
-	}else{
-		if (aux>=45 && aux<=180){
-			theta=(2.0/3.0)* aux-30;
-		}else{
-			if (aux>180 && aux<=315){
-			theta=0; // au debut on croyait que theta pouvait varier entre -90 et 90 (2.0/3.0)* *alpha-210;
-			}
-		}
-	}
-return theta;
+// Configuration Girouette 
+void Conf_Girouette(){
+
+	// Configuration TIMER Codeur
+	IncEncoder_TIMER_Config();
+
+	// Detection de l'angle zero afin de demarrer le Codeur
+	IncEncoder_AngleZero();
+
+}
+
+// 	Retourner l'angle de la Girouette
+float Get_Angle_Girouette(){
+	float Angle_girouette;
+	Angle_girouette = (float)TIM3->CNT;
+	Angle_girouette = angle_girouette / 2;
+	return Angle_girouette;
 }
 
 
-// Calcul de l'impulsion pour le servo moteur
-float Calcul_Impulsion(float theta){
-	return 2 - (theta-PSMAX)/(PSMIN-PSMAX);
+// Handler EXTI
+void EXTI9_5_IRQHandler() {
+
+	// Remise à zéro du compteur  
+	TIM3->CNT=0x0; 
+
+	// Remise à zéro du flag 
+	EXTI->PR |= 0x1 <<5;
 }
-
-
