@@ -7,8 +7,11 @@
 
 int main(void){
 
+		Conf_Girouette();
 		while(1)
 			{
+				float theta;
+				theta = Get_Angle_Girouette();
 			}
 			return 0;
 			
