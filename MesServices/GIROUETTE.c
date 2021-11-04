@@ -6,7 +6,7 @@
 
 // Configuration broches Codeur sur GPIOA: INDEX->PA5 et CHA->PA6 et CHB->PA7 en INPUT FLOATING
 // PA6= TIM3_CH1 et PA7=TIM3_CH2
-void IncEncoder_GPIO_Config(){
+void IncEncoder_GPIO_Config(void){
 
 	MyGPIO_Init (GPIOA, 5 , In_Floating , InputMode ) ;
 	MyGPIO_Init (GPIOA, 6 , In_Floating , InputMode ) ;
@@ -31,7 +31,7 @@ void IncEncoder_TIMER_Mode_3(TIM_TypeDef *Timer){
 
 
 // Configuration TIMER Codeur
-void IncEncoder_TIMER_Config(){
+void IncEncoder_TIMER_Config(void){
 
 	IncEncoder_GPIO_Config();  
 	IncEncoder_TIMER_Mode_3(TIM3);
@@ -54,7 +54,7 @@ void IncEncoder_TIMER_Config(){
 
 
 // Detection de l'angle zero afin de demarrer le Codeur
-void IncEncoder_AngleZero(){
+void IncEncoder_AngleZero(void){
 
 	while (MyGPIO_Read(GPIOA,5) == 0);
 
@@ -64,7 +64,7 @@ void IncEncoder_AngleZero(){
 
 
 // Configuration Girouette 
-void Conf_Girouette(){
+void Conf_Girouette(void){
 
 	// Configuration TIMER Codeur
 	IncEncoder_TIMER_Config();
@@ -75,7 +75,7 @@ void Conf_Girouette(){
 }
 
 // 	Retourner l'angle de la Girouette
-float Get_Angle_Girouette(){
+float Get_Angle_Girouette(void){
 	float Angle_girouette;
 	Angle_girouette = (float)TIM3->CNT;
 	Angle_girouette = Angle_girouette / 2;
@@ -84,7 +84,7 @@ float Get_Angle_Girouette(){
 
 
 // Handler EXTI
-void EXTI9_5_IRQHandler() {
+void EXTI9_5_IRQHandler(void) {
 
 	// Remise à zéro du compteur  
 	TIM3->CNT=0x0; 

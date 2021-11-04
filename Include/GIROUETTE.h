@@ -6,33 +6,27 @@
 #include "GPIO.h"
 
 // Configuration broches GPIOA, INDEX->PA5 et CHA->PA6 et CHB->PA7 en INPUT FLOATING
-void IncEncoder_GPIO_Config( ); 
-
-
-// Configuration TIMER Codeur
-void IncEncoder_TIMER_Config( );
+void IncEncoder_GPIO_Config(void); 
 
 
 //Mode 3 du Codeur : counting on both TI1 and TI2 edges
 void IncEncoder_TIMER_Mode_3(TIM_TypeDef *Timer);
 
 
+// Configuration TIMER Codeur
+void IncEncoder_TIMER_Config(void);
+
+
 // Detection de l'angle zero afin de demarrer le Codeur
-void IncEncoder_AngleZero();
+void IncEncoder_AngleZero(void);
 
 
-// Calcul de Theta
-// Theta : Angle pour le quel les voiles doivent se déplacer
-// Alpha : Angledu vent returné avec Timer->CNT (0° à 360°)
-float Calcul_Theta(volatile unsigned int *alpha);
+// Configuration Girouette 
+void Conf_Girouette(void);
 
 
-// Calcul de l'impulsion pour le servo moteur à partir de l'angle theta
-// Les voiles doivent se deplacer de -90° à 90°
-// On return le Duty Cycle necessaire pour la PWM
-float Calcul_Impulsion(float theta);
-
-
+// 	Retourner l'angle de la Girouette
+float Get_Angle_Girouette(void);
 
 
 #endif
