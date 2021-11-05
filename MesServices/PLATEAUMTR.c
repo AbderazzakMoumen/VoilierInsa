@@ -24,12 +24,12 @@ void Commande_PLATEAUMTR(int Direction, float Duty_cycle) {
 		// Moteur Plateau tourne à gauche
 		 MyGPIO_Reset(GPIOA, 2);
 		 }
-	if (Direction == 0){
-		// Moteur Plateau tourne à gauche
+	if (Direction == 1){
+		// Moteur Plateau tourne à droite
 		 MyGPIO_Set(GPIOA, 2);
 		 } 
 
 	// Vitesse de rotation du Moteur Plateau
-	Timer_PWM_Set_Duration(TIM2, Duty_cycle, 2);
+	Timer_PWM_DutyCycle_Fix(TIM2, Duty_cycle, 2);
 
 }
