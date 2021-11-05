@@ -4,13 +4,18 @@
 #include "SERVOMTR.h"
 #include "GIROUETTE.h"
 
-float theta;
+//float theta;
+int Direction;
+float Duty_cycle;
 int main(void){
 
 		Conf_Girouette();
+		Init_PLATEAUMTR();
 		while(1)
 			{
-				theta = Get_Angle_Girouette();
+				//theta = Get_Angle_Girouette();
+				Commande_PLATEAUMTR(Direction, Duty_cycle);
+
 			}
 			return 0;
 			
