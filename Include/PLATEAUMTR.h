@@ -1,12 +1,20 @@
-#ifndef SERVOMTR_H
-#define SERVOMTR_H
+#ifndef PLATEAUMTR_H
+#define PLATEAUMTR_H
 
 #include "stm32f10x.h"
 #include "TIMER.h"
 #include "GPIO.h"
 
-void Initialisation_SERVOMTR();
-void Configuration_SERVOMTR();
+
+
+// Initialisation Moteur Plateau
+void Init_PLATEAUMTR(void);
+
+
+// Commande du Moteur Plateau
+void Commande_PLATEAUMTR(int Direction, float Duty_cycle);
+
+
 
 
 
