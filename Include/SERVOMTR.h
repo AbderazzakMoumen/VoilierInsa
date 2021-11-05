@@ -6,7 +6,7 @@
 #include "GIROUETTE.h"
 
 
-void Init_Servo (); 
+void Init_SERVOMTR(void); 
 
 float Calcule_Percentage_Angle(float Angle_Vent);
 
