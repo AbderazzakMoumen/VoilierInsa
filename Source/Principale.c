@@ -4,13 +4,12 @@
 #include "SERVOMTR.h"
 #include "GIROUETTE.h"
 
-
+float theta;
 int main(void){
 
 		Conf_Girouette();
 		while(1)
 			{
-				float theta;
 				theta = Get_Angle_Girouette();
 			}
 			return 0;
