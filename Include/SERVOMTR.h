@@ -1,13 +1,15 @@
 #ifndef SERVOMTR_H
 #define SERVOMTR_H
 
-#include "stm32f10x.h"
 #include "TIMER.h"
 #include "GPIO.h"
 
-void Initialisation_SERVOMTR();
-void Configuration_SERVOMTR();
 
+void Init_Servo (); 
+
+float Calcule_Percentage_Angle(float Angle_Vent);
+
+void Commander_Voiles(void);
 
 
 #endif
