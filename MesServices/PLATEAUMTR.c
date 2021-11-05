@@ -10,7 +10,7 @@ void Init_PLATEAUMTR(void) {
 	MyGPIO_Init (GPIOA, 1 , AltOut_Ppull , OutputMode_10MHz) ;
 	MyGPIO_Init (GPIOA, 2 , Out_Ppull , OutputMode_10MHz) ;
 
-
+    Timer_Start(TIM2);
 	// Le signal PWM est de fréquence 20kHz donc la durée est de 50 us
 	Timer_PWM_Init(TIM2, 50, 2);
 

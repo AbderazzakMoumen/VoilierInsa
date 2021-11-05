@@ -1,6 +1,4 @@
 #include "SERVOMTR.h"
-#include "GIROUETTE.h"
-#include "stm32f10x.h"
 
 void Init_SERVOMTR(){
 
@@ -31,7 +29,6 @@ float Calcule_Percentage_Angle(float Angle_Vent) {
 	return (1 - Perc);
 }
 void Commander_Voiles(void) {
-	float Perc_Cycle, Period_PWM;
-	Perc_Cycle = Calcule_Percentage_Angle(Get_Angle_Girouette());
-	Period_PWM = Timer_PWM_Set_Duration(TIM1, Perc_Cycle, 1);
+	 
+	 Timer_PWM_DutyCycle_Fix(TIM1, Calcule_Percentage_Angle(Get_Angle_Girouette()), 1);
 }

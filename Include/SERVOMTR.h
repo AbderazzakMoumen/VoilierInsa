@@ -3,6 +3,7 @@
 
 #include "TIMER.h"
 #include "GPIO.h"
+#include "GIROUETTE.h"
 
 
 void Init_Servo (); 
