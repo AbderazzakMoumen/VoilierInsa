@@ -10,7 +10,7 @@ float Duty_cycle;
 int main(void){
 
 		Conf_Girouette();
-		Init_PLATEAUMTR(void);
+		Init_PLATEAUMTR();
 		while(1)
 			{
 				//theta = Get_Angle_Girouette();
