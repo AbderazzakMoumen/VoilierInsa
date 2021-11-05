@@ -3,13 +3,15 @@
 #include "GPIO.h"
 #include "SERVOMTR.h"
 #include "GIROUETTE.h"
+#include "PLATEAUMTR.h"
 
 //float theta;
 int Direction;
 float Duty_cycle;
 int main(void){
 
-		Conf_Girouette();
+		//Conf_Girouette();
+		//Init_SERVOMTR();
 		Init_PLATEAUMTR();
 		while(1)
 			{
