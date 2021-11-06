@@ -8,9 +8,9 @@
 
 void Init_SERVOMTR(void); 
 
-float Calcule_Percentage_Angle(float Angle_Vent);
+float Calcul_Pourcentage_Angle(float Angle_Vent);
 
-void Commander_Voiles(void);
+void Commande_SERVOMTR(void);
 
 
 #endif
