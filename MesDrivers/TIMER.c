@@ -33,15 +33,15 @@ void Timer_Init(TIM_TypeDef *Timer, float Duree){
 		Timer_Active_Clock(Timer);
 		
 	  // Calcul de ARR et PSC
-		Total = 72000000*Duree; 
+		//Total = 72000000*Duree; 
 		
-		Psc = 36;     
-		Arr = Total/(Psc + 1); 
+		Psc = 35;     
+		Arr = ((72 * Duree) / (Psc + 1)-1); 
 		
-		Psc=Psc+1;
+	//	Psc=Psc+1;
 		
-		Timer->PSC = Psc-1;
-		Timer->ARR = Arr-1;
+		Timer->PSC = Psc;
+		Timer->ARR = Arr;
 
 }
 
