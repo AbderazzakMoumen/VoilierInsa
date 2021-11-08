@@ -8,7 +8,7 @@
 
 void Init_SERVOMTR(void); 
 
-float Calcul_DC_Angle(float Angle_Vent);
+float Calcul_DutyCycle_SERVOMTR(float Angle_Vent);
 
 void Commande_SERVOMTR(void);
 
