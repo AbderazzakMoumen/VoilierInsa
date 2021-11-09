@@ -2,6 +2,7 @@
 ".\objects\principale.o"
 ".\objects\girouette.o"
 ".\objects\servomtr.o"
+".\objects\plateaumtr.o"
 ".\objects\gpio.o"
 ".\objects\timer.o"
 ".\objects\startup_stm32f10x_md.o"

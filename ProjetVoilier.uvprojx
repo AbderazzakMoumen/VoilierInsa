@@ -403,6 +403,11 @@
               <FileType>1</FileType>
               <FilePath>.\MesServices\SERVOMTR.c</FilePath>
             </File>
+            <File>
+              <FileName>PLATEAUMTR.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MesServices\PLATEAUMTR.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
