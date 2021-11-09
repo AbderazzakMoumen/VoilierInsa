@@ -25,7 +25,9 @@ void MyADC_Init (ADC_TypeDef * ADC)
 
 void Conf_ADC(ADC_TypeDef * ADC, u8 Channel) 
 {
-    
+    // Init EOC register (on le met à 0)
+	ADC->SR &= ~(0x01 << 1);
+
     //On souhaite faire une seule conversion
     ADC->SQR1 &= ADC_SQR1_L; 
 
@@ -38,13 +40,9 @@ int Valeur_ADC(ADC_TypeDef * ADC)
 {
 	//On lance la conversion
     ADC->CR2 |= (0x01 << 0); 
-
-    //On attend la fin de la conversion
-    While(!(ADC->SR & ADC_SR_EOC) ) {} 
-
-    //On valide la conversion
-    ADC->SR &= ~ADC_SR_EOC; 
-
-    //On retourne la valeur de la conversion
-    return ADC->DR & ~((0x0F) << 12); 
+    
+    //On attend que le End Of Conversion passe à 1 (ce qui veut dire que la conversion est finie :) )
+    while ((ADC->SR & (0x01 << 1)) == 0);
+	
+	return (ADC->DR);
 }
