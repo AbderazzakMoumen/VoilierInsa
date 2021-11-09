@@ -43,5 +43,5 @@ float Calcul_DutyCycle_SERVOMTR(float Angle_Vent) {
 }
 void Commande_SERVOMTR(void) {
 	 
-	 Timer_PWM_DutyCycle_Fix(TIM1, Calcul_DC_Angle(Get_Angle_Girouette()), 1);
+	 Timer_PWM_DutyCycle_Fix(TIM1, Calcul_DutyCycle_SERVOMTR(Get_Angle_Girouette()), 1);
 }

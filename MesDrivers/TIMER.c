@@ -29,7 +29,7 @@ void Timer_Init(TIM_TypeDef *Timer, float Duree){
 	
 		int Psc;
 		int Arr;
-		int Total;
+		//int Total;
 		Timer_Active_Clock(Timer);
 		
 	  // Calcul de ARR et PSC
