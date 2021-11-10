@@ -151,6 +151,10 @@ void Timer_PWM_Init(TIM_TypeDef *Timer, float Duree, int Channel){
 				 break;
 		 
  }
+// Enable bit MOE si Timer 1
+	if (Timer == TIM1) {
+		Timer->BDTR |= (0x1 << 15);
+	}
 }
 
 
