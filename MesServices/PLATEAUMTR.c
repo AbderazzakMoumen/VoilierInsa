@@ -18,18 +18,20 @@ void Init_PLATEAUMTR(void) {
 
 
 // Commande du Moteur Plateau
-void Commande_PLATEAUMTR(int Direction, float Duty_cycle) {
+void Commande_PLATEAUMTR() {
 
-	if (Direction == 0){
+	Duty_cycle = MYUSART_RECEIVE();
+
+	if(Duty_cycle >= 0){
 		// Moteur Plateau tourne à gauche
 		 MyGPIO_Reset(GPIOA, 4);
 		 }
-	if (Direction == 1){
+	else {
 		// Moteur Plateau tourne à droite
 		 MyGPIO_Set(GPIOA, 4);
 		 } 
 
 	// Vitesse de rotation du Moteur Plateau
-	Timer_PWM_DutyCycle_Fix(TIM2, Duty_cycle, 2);
+	Timer_PWM_DutyCycle_Fix(TIM2, abs(Duty_cycle), 2);
 
 }

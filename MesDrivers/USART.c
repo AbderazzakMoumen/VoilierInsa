@@ -1,48 +1,45 @@
-#include "ADC.h"
+#include "USART.h"
 #include "stm32f10x.h"
 
-void MyADC_Init (ADC_TypeDef * ADC) 
-{
-    
-	if (ADC == ADC1) {
-		(RCC->APB2ENR)|= RCC_APB2ENR_ADC1EN;
-		//On divise par 6 la fréquence d'entrée (72MHz / 6 = 12MHz) car ADC doit avoir une fréquence < 14MHz pour que le périphérique fonctionne.
-	    RCC->CFGR |= RCC_CFGR_ADCPRE_DIV6;
+int BIT_RX;
 
-		// On active ADC1 
-		ADC1->CR2 |= (0x01 << 0);
-	}
-	if (ADC == ADC2) {
-		(RCC->APB2ENR)|= RCC_APB2ENR_ADC2EN;
-		//On divise par 6 la fréquence d'entrée (72MHz / 6 = 12MHz) car ADC doit avoir une fréquence < 14MHz pour que le périphérique fonctionne.
-	    RCC->CFGR |= RCC_CFGR_ADCPRE_DIV6;
-		
-		// On a active ADC2
-		ADC2->CR2 |= (0x01 << 0);
-	}
-	
+void MYUSART_Config(void) {
+
+	// GPIO CONFIGURATION 
+	// PA10 USART1_RX / TIM1_CH3
+	MyGPIO_Init (GPIOA, 10 , In_PullUp , InputMode) ;
+
+    RCC->APB2ENR |= RCC_APB2ENR_USART1EN; //Enable the USART by writing the UE bit in USART_CR1 register to 1.
+    USART1->CR1 |= USART_CR1_UE; // USART Activation 
+    USART1->CR1 &= ~USART_CR1_M; // Program the M bit in USART_CR1 to define the word length 8 bits
+
+    USART1->BRR |= 468 << 4; // Fixe le baud rate à 9600bps
+    USART1->BRR |= 75; // Fixe le baud rate à 9600bps
+    USART1->CR1 |= USART_CR1_RE; // Set the RE bit USART_CR1. RECEIVER MODE ENABLE
 }
 
-void Conf_ADC(ADC_TypeDef * ADC, u8 Channel) 
-{
-    // Init EOC register (on le met à 0)
-	ADC->SR &= ~(0x01 << 1);
 
-    //On souhaite faire une seule conversion
-    ADC->SQR1 &= ADC_SQR1_L; 
+void MYUSART_IT(char Prio,void(*IT_function)){
 
-    //On choisit quelle voie on souhaite convertir
-    ADC->SQR3 |= Channel;
+	USART1->CR1 |= USART_CR1__RXNEIE; // The RXNE bit is set. In other words, data has been received and can be read
+	HandlerUSART1 = IT_function;
+	NVIC->ISER[1] |= NVIC_ISER_SETENA_5; // NVIC->ISER[1] |= 1<<(37-32);
+	NVIC->IP[USART1_IRQn] = (Prio << 4);
 
 }
 
-int Valeur_ADC(ADC_TypeDef * ADC) 
+char MYUSART_RECEIVE(void){
+
+	return USART1->DR; 
+}
+
+
+void USART1_IRQHandler (void)
 {
-	//On lance la conversion
-    ADC->CR2 |= (0x01 << 0); 
-    
-    //On attend que le End Of Conversion passe à 1 (ce qui veut dire que la conversion est finie :) )
-    while ((ADC->SR & (0x01 << 1)) == 0);
-	
-	return (ADC->DR);
+	if (HandlerUSART1 != 0){
+	(*HandlerUSART1)();
+	} 
+
+	USART1->SR &= ~ USART_SR_RXNE; // Flag remise à zero
+
 }
