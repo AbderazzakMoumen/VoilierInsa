@@ -37,3 +37,4 @@ void Commande_PLATEAUMTR(void) {
 	Timer_PWM_DutyCycle_Fix(TIM2, (Duty_cycle), 2);
 
 }
+
