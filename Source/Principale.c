@@ -4,24 +4,28 @@
 #include "SERVOMTR.h"
 #include "GIROUETTE.h"
 #include "PLATEAUMTR.h"
+#include "USART.h"
 
-//float theta;
+float theta;
 
 int main(void){
 
-		//Conf_Girouette();
-		//Init_SERVOMTR();
+		Conf_Girouette();
+		Init_SERVOMTR();
 		Init_PLATEAUMTR();
 		MYUSART_Config();
-		MYUSART_IT(4,Commande_PLATEAUMTR();
+		MYUSART_IT(4,Commande_PLATEAUMTR);
 		while(1)
 			{
-				//theta = Get_Angle_Girouette();
+				theta = Get_Angle_Girouette();
+
+				Commande_SERVOMTR(theta);
 
 			}
 			return 0;
 			
 }
+
 
 
 

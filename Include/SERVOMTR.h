@@ -12,7 +12,7 @@ void Init_SERVOMTR(void);
 float Calcul_DutyCycle_SERVOMTR(float Angle_Vent);
 
 //Commander le servo moteur à l'aide de la PWN
-void Commande_SERVOMTR(void);
+void Commande_SERVOMTR(float Angle_girouette);
 
 
 #endif

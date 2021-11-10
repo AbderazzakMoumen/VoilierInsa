@@ -12,7 +12,7 @@ void Init_PLATEAUMTR(void);
 
 
 // Commande du Moteur Plateau
-void Commande_PLATEAUMTR(int Direction, float Duty_cycle);
+void Commande_PLATEAUMTR(void);
 
 
 

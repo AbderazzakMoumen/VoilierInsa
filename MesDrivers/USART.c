@@ -1,7 +1,7 @@
 #include "USART.h"
 #include "stm32f10x.h"
 
-int BIT_RX;
+void (*HandlerUSART1)(void);
 
 void MYUSART_Config(void) {
 
@@ -19,9 +19,9 @@ void MYUSART_Config(void) {
 }
 
 
-void MYUSART_IT(char Prio,void(*IT_function)){
+void MYUSART_IT(char Prio,void(*IT_function)(void)){
 
-	USART1->CR1 |= USART_CR1__RXNEIE; // The RXNE bit is set. In other words, data has been received and can be read
+	USART1->CR1 |= USART_CR1_RXNEIE; // The RXNE bit is set. In other words, data has been received and can be read
 	HandlerUSART1 = IT_function;
 	NVIC->ISER[1] |= NVIC_ISER_SETENA_5; // NVIC->ISER[1] |= 1<<(37-32);
 	NVIC->IP[USART1_IRQn] = (Prio << 4);

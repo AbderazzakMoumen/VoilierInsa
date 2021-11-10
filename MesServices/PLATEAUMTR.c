@@ -1,4 +1,5 @@
 #include "PLATEAUMTR.h"
+#include "USART.h"
 
 // Initialisation Moteur Plateau
 void Init_PLATEAUMTR(void) {
@@ -18,9 +19,9 @@ void Init_PLATEAUMTR(void) {
 
 
 // Commande du Moteur Plateau
-void Commande_PLATEAUMTR() {
+void Commande_PLATEAUMTR(void) {
 
-	Duty_cycle = MYUSART_RECEIVE();
+	signed char Duty_cycle = MYUSART_RECEIVE();
 
 	if(Duty_cycle >= 0){
 		// Moteur Plateau tourne à gauche
@@ -29,9 +30,10 @@ void Commande_PLATEAUMTR() {
 	else {
 		// Moteur Plateau tourne à droite
 		 MyGPIO_Set(GPIOA, 4);
+		 Duty_cycle = -Duty_cycle;
 		 } 
 
 	// Vitesse de rotation du Moteur Plateau
-	Timer_PWM_DutyCycle_Fix(TIM2, abs(Duty_cycle), 2);
+	Timer_PWM_DutyCycle_Fix(TIM2, (Duty_cycle), 2);
 
 }

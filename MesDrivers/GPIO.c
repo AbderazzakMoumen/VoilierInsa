@@ -23,9 +23,9 @@ void MyGPIO_Init (GPIO_TypeDef * GPIO, char GPIO_Pin, char GPIO_Conf, char GPIO_
 				GPIO -> CRL &= ~(0xF << (GPIO_Pin *4));
 				GPIO -> CRL |= (GPIO_Mode << (GPIO_Pin *4))| (GPIO_Conf << ((GPIO_Pin *4)+2));
 				}
-	  else {
-				GPIO -> CRH &= ~(0xF << (GPIO_Pin *4));
-				GPIO -> CRH |= (GPIO_Mode << (GPIO_Pin *4))| (GPIO_Conf << ((GPIO_Pin *4)+2));
+	  else if ( GPIO_Pin >= 8 ) {
+				GPIO -> CRH &= ~(0xF << ((GPIO_Pin-8) *4));
+				GPIO -> CRH |= (GPIO_Mode << ((GPIO_Pin-8) *4))| (GPIO_Conf << (((GPIO_Pin-8) *4)+2));
 				}
 		
 }
@@ -59,5 +59,6 @@ void MyGPIO_Toggle ( GPIO_TypeDef * GPIO , char GPIO_Pin ){
 		else
 			MyGPIO_Set (GPIO , GPIO_Pin ) ;
 }
+
 
 
