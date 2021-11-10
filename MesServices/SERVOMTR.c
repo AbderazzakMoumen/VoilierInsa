@@ -1,6 +1,6 @@
 #include "SERVOMTR.h"
 
-void Init_SERVOMTR(){
+void Init_SERVOMTR(void){
 	// Sortie PWN -> PA8
 	//PA8 -> Output Alternate function push-pull
 
