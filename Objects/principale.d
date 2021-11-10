@@ -12,3 +12,4 @@
 .\objects\principale.o: .\Include\SERVOMTR.h
 .\objects\principale.o: .\Include\GIROUETTE.h
 .\objects\principale.o: .\Include\PLATEAUMTR.h
+.\objects\principale.o: .\Include\USART.h

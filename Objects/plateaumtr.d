@@ -10,3 +10,4 @@
 .\objects\plateaumtr.o: C:\Users\MOUMEN\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h
 .\objects\plateaumtr.o: .\Include\TIMER.h
 .\objects\plateaumtr.o: .\Include\GPIO.h
+.\objects\plateaumtr.o: .\Include\USART.h

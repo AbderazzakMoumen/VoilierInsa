@@ -408,6 +408,11 @@
               <FileType>1</FileType>
               <FilePath>.\MesServices\PLATEAUMTR.c</FilePath>
             </File>
+            <File>
+              <FileName>BATTERIE.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MesServices\BATTERIE.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -422,6 +427,16 @@
               <FileName>TIMER.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MesDrivers\TIMER.c</FilePath>
+            </File>
+            <File>
+              <FileName>ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MesDrivers\ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>USART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MesDrivers\USART.c</FilePath>
             </File>
           </Files>
         </Group>
