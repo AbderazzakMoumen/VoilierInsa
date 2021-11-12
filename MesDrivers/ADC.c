@@ -20,6 +20,15 @@ void MyADC_Init (ADC_TypeDef * ADC)
 		// On a active ADC2
 		ADC2->CR2 |= (0x01 << 0);
 	}
+	if (nb_cycles == 7.5){	
+		// 001: 7.5 cycles
+		while (champ < 10) {
+			ADC->SMPR1 |= (0x01 << num_bit);
+			ADC->SMPR2 |= (0x01 << num_bit);
+			champ++;
+			num_bit += 3;
+		}
+	}
 	
 }
 
