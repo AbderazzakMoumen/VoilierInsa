@@ -44,3 +44,19 @@ void USART1_IRQHandler (void)
 
 }
 
+
+
+
+//	int i;
+	char * Caractere;
+	Caractere=Chaine;
+	
+	// Mise a 1 de TX pour demarrer la transmission
+	// Port_IO_Set(GPIOA,11); --> voir remarque
+	
+	while ((*Caractere)!='\0') {
+		Transm_USART(USART1, (*Caractere));	
+		// Pour pas remplir le buffer du recepteur (Connecté à l'ordinateur)
+		for (i=0 ; i < 100000 ; i++);
+		Caractere++;
+	}
