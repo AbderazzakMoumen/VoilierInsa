@@ -10,6 +10,7 @@ void MyBatterie_Init(void);
 //On recoit la valeur de la conversion
 int Charge_Batterie(void);
 
+void Send_Perc_Tension_Batterie(void);
 
 
 #endif

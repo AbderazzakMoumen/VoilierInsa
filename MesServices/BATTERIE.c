@@ -15,3 +15,18 @@ int Charge_Batterie(void) {
 
 	return Valeur_ADC(ADC1);
 }
+
+void Send_Perc_Tension_Batterie(void) {
+	char PercBatterie[]="\n\rPerc batterie restant: ";
+	// Cahier des charges pour l'alimentation
+	const float Alim = 12.0;
+	const float Pont_Diviseur = 1./13.;
+	const float Resolution_ADC = 4096./3.3;
+	// Calcul de tension de la batterie en percentage
+	float Tension_Batterie = (float)(Get_Batterie_Charge());
+	float Tension_Max = (float)(Alim * Pont_Diviseur * Resolution_ADC);
+	unsigned int Percentage_Restant = (unsigned int)(Tension_Batterie/Tension_Max * 100.0);
+	
+	Send_Chaine(PercBatterie);
+	Send_Number(Percentage_Restant);
+}
