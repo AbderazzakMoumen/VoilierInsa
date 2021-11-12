@@ -27,18 +27,56 @@ float Calcul_DutyCycle_SERVOMTR(float Angle_Vent) {
 	if (Angle_Vent <= 45.0)  {
         Duty_Cycle = 5;
    }
-	if (Angle_Vent > 45.0 && Angle_Vent < 140.0) {
+   if (Angle_Vent > 45.0 && Angle_Vent < 70.0) {
 		Duty_Cycle = 6; 
 	}
-	if (Angle_Vent > 140.0 && Angle_Vent < 200.0) {
-		Duty_Cycle = 10; 
+	if (Angle_Vent > 70.0 && Angle_Vent < 95.0) {
+		Duty_Cycle = 7; 
 	}
-	if (Angle_Vent > 200.0 && Angle_Vent < 260.0) {
+	if (Angle_Vent > 95.0 && Angle_Vent < 120.0) {
+		Duty_Cycle = 8; 
+	}
+   if (Angle_Vent > 120.0 && Angle_Vent < 145.0) {
 		Duty_Cycle = 9; 
 	}
-	if (Angle_Vent > 260.0)  {		
-    Duty_Cycle = 10;
+	if (Angle_Vent > 145.0 && Angle_Vent < 200.0) {
+		Duty_Cycle = 10; 
+	}
+	if (Angle_Vent > 200.0 && Angle_Vent < 225.0) {
+		Duty_Cycle = 9; 
+	}
+	if (Angle_Vent > 225.0 && Angle_Vent < 250.0) {
+		Duty_Cycle = 8; 
+	}
+   if (Angle_Vent > 250.0 && Angle_Vent < 275.0) {
+		Duty_Cycle = 7; 
+	}
+	if (Angle_Vent > 275.0 && Angle_Vent < 300.0) {
+		Duty_Cycle = 6; 
+	}
+	if (Angle_Vent >= 300.0)  {
+        Duty_Cycle = 5;
    }
+
+	
+	
+	//if (Angle_Vent > 45.0 && Angle_Vent < 140.0) {
+	//	Duty_Cycle = 6; 
+	//}
+	//if (Angle_Vent > 140.0 && Angle_Vent < 200.0) {
+	//	Duty_Cycle = 10; 
+	//}
+	//if (Angle_Vent > 200.0 && Angle_Vent < 260.0) {
+	//	Duty_Cycle = 9; 
+	//}
+	//if (Angle_Vent > 260.0)  {		
+    //Duty_Cycle = 10;
+   //}
+
+
+
+
+   
 	
    //	if (Angle_Vent > 45.0 && Angle_Vent < 315.0) {
    //		Duty_Cycle = (1/80)*Angle_Vent + 5.25; 
