@@ -3,7 +3,7 @@
 void MyBatterie_Init(void) 
 {
 	//On configure PC2 en mode analog input
-	MyGPIO_Init(GPIOC,2,In_Analog,InputMode)
+	MyGPIO_Init(GPIOC,2,In_Analog,InputMode);
 
 	//On initialise l'ADC
 	MyADC_Init(ADC1);

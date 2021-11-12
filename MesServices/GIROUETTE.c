@@ -92,3 +92,4 @@ void EXTI9_5_IRQHandler(void) {
 	// Remise à zéro du flag 
 	EXTI->PR |= 0x1 <<5;
 }
+
