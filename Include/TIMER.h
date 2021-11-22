@@ -39,4 +39,8 @@ void Timer_PWM_Init(TIM_TypeDef *Timer, float Frequence_PWM_kHz, int Channel);
 void Timer_PWM_DutyCycle_Fix(TIM_TypeDef *Timer, int Duty_Cycle, int Channel);
 
 
+//   Fixer la le rapport cyclique de la PWM (Version 2 pour le SERVOMTR)
+void Timer_PWM_DutyCycle_Fix2(TIM_TypeDef *Timer, float Duty_Cycle, int Channel);
+
+
 #endif

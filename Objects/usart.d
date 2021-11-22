@@ -10,3 +10,4 @@
 .\objects\usart.o: C:\Users\MOUMEN\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h
 .\objects\usart.o: .\Include\TIMER.h
 .\objects\usart.o: .\Include\GPIO.h
+.\objects\usart.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

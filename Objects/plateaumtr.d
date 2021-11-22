@@ -11,3 +11,4 @@
 .\objects\plateaumtr.o: .\Include\TIMER.h
 .\objects\plateaumtr.o: .\Include\GPIO.h
 .\objects\plateaumtr.o: .\Include\USART.h
+.\objects\plateaumtr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

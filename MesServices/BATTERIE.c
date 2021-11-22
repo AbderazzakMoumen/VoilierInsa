@@ -1,32 +1,52 @@
 #include "BATTERIE.h"
 
-void MyBatterie_Init(void) 
-{
-	//On configure PC2 en mode analog input
-	MyGPIO_Init(GPIOC,2,In_Analog,InputMode);
+
+//Initialisation de la mesure de la tension de la batterie
+void MyBatterie_Init(void) {
+
+	int champ = 0, num_bit = 0;
+	//On configure PB0 en mode analog input
+	MyGPIO_Init(GPIOB,0,In_Analog,InputMode);
 
 	//On initialise l'ADC
 	MyADC_Init(ADC1);
+
 }
 
-int Charge_Batterie(void) { 
-	//On commence la conversion sur Channel 12
-	Conf_ADC(ADC1, 12);
 
+//Recuperation de la tension de la batterie à l'entrèe de l'ADC
+int ADC_Batterie_Charge(void) { 
+
+	//On commence la conversion sur Channel 8
+	Conf_ADC(ADC1, 8);
+	
 	return Valeur_ADC(ADC1);
+
 }
 
-void Send_Perc_Tension_Batterie(void) {
-	char PercBatterie[]="\n\rPerc batterie restant: ";
-	// Cahier des charges pour l'alimentation
-	const float Alim = 12.0;
+
+//Recuperation de la tension de la batterie en VOLTS
+unsigned int Batterie_Voltage(void) {
+	
 	const float Pont_Diviseur = 1./13.;
 	const float Resolution_ADC = 4096./3.3;
-	// Calcul de tension de la batterie en percentage
-	float Tension_Batterie = (float)(Get_Batterie_Charge());
-	float Tension_Max = (float)(Alim * Pont_Diviseur * Resolution_ADC);
-	unsigned int Percentage_Restant = (unsigned int)(Tension_Batterie/Tension_Max * 100.0);
+
+	// Calcul de tension de la batterie
+	unsigned int Tension_Batterie = (float)( (float)(ADC_Batterie_Charge()) / (Resolution_ADC * Pont_Diviseur));
 	
-	Send_Chaine(PercBatterie);
-	Send_Number(Percentage_Restant);
+	return Tension_Batterie+1;
+	
+}
+
+
+//Calcul du pourcentage de la batterie restante
+unsigned int Batterie_Percentage(void) {
+	
+	const float Alim = 12.0;
+	// Calcul de tension de la batterie en percentage
+	
+	unsigned int Percentage_Batterie = (float) ((float)(Batterie_Voltage()) / Alim)*100;
+	
+	return Percentage_Batterie;
+	
 }

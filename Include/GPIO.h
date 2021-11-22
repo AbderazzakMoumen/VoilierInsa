@@ -16,11 +16,25 @@
 #define OutputMode_2MHz 0x02
 #define OutputMode_50MHz 0x03
 
-void MyGPIO_Init (GPIO_TypeDef * GPIO, char GPIO_Pin, char GPIO_Conf, char GPIO_Mode ) ; // GPIO Initialisation et choix de la Config et Mode
-int MyGPIO_Read ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ; // Lire la broche : renvoie 0 ou autre chose different de 0
-void MyGPIO_Set ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ; // Mettre la broche à 1
-void MyGPIO_Reset ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ; // Mettre la broche à 0
-void MyGPIO_Toggle ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ; // Faire clignotter la borche
+
+// GPIO Initialisation et choix de la Config et Mode
+void MyGPIO_Init (GPIO_TypeDef * GPIO, char GPIO_Pin, char GPIO_Conf, char GPIO_Mode ) ;
+
+
+// Lire la broche : renvoie 0 ou autre chose different de 0
+int MyGPIO_Read ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ; 
+
+
+// Mettre la broche à 1
+void MyGPIO_Set ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ; 
+
+
+// Mettre la broche à 0
+void MyGPIO_Reset ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ;
+
+
+// Faire clignotter la borche 
+void MyGPIO_Toggle ( GPIO_TypeDef * GPIO , char GPIO_Pin ) ; 
 
 
 

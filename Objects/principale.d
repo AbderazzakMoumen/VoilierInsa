@@ -13,3 +13,6 @@
 .\objects\principale.o: .\Include\GIROUETTE.h
 .\objects\principale.o: .\Include\PLATEAUMTR.h
 .\objects\principale.o: .\Include\USART.h
+.\objects\principale.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\principale.o: .\Include\BATTERIE.h
+.\objects\principale.o: .\Include\ADC.h

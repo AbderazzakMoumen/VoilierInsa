@@ -3,7 +3,6 @@
 
 
 
-
 // Configuration broches Codeur sur GPIOA: INDEX->PA5 et CHA->PA6 et CHB->PA7 en INPUT FLOATING
 // PA6= TIM3_CH1 et PA7=TIM3_CH2
 void IncEncoder_GPIO_Config(void){
@@ -25,7 +24,7 @@ void IncEncoder_TIMER_Mode_3(TIM_TypeDef *Timer){
 	Timer->SMCR &= ~(7 << 0);     // (7 << 0)==(0b111 << 0)
 	Timer->SMCR |= (3 << 0);  // (3 << 0)==(0b011 << 0)
 	Timer->PSC = 0;
-	Timer->ARR = 720; //1 tour == 360 périodes sur chaque voie
+	Timer->ARR = 1440-1; //1 tour == 360 périodes sur chaque voie
 
 }
 
@@ -78,7 +77,7 @@ void Conf_Girouette(void){
 float Get_Angle_Girouette(void){
 	float Angle_girouette;
 	Angle_girouette = (float)TIM3->CNT;
-	Angle_girouette = Angle_girouette / 2;
+	Angle_girouette = Angle_girouette / 4;
 	return Angle_girouette;
 }
 

@@ -1,19 +1,22 @@
 #include "SERVOMTR.h"
 
-void Init_SERVOMTR(void){
-	// Sortie PWN -> PA8
-	//PA8 -> Output Alternate function push-pull
 
+//Initialisation du Servomoteur
+// Sortie PWN -> PA8
+//PA8 -> Output Alternate function push-pull
+void Init_SERVOMTR(void){
+	
      MyGPIO_Init(GPIOA,8,AltOut_Ppull,OutputMode_10MHz);
      Timer_PWM_Init(TIM1,20000,1);
      Timer_Start(TIM1);
 	   
-
 }
 
+
+//Calcul du rapport cyclique pour varier l'angle de rotation du Servomoteur
 float Calcul_DutyCycle_SERVOMTR(float Angle_Vent) {
 	//float DC = 95;
-	float Duty_Cycle;
+	int Duty_Cycle;
 	//+Pour un DC de 5% le servo moteur fait un tour de 0° et les voiles ne bougent pas (entre 0° et 45° d'angle avec le vent).
 	//+Pour un DC de 7.5% le servo moteur fait un tour de 90° et il faut faire bouger les voiles d'une maniere progressive 
 	//jusqu'à atteindre 90° quand le bateau est à 180° du vent(vent arrière), ensuite quand le vent dépasse les 180° avec le bateau le 
@@ -21,41 +24,51 @@ float Calcul_DutyCycle_SERVOMTR(float Angle_Vent) {
 	//+Pour un DC de 10% le servo moteur fait un tour de 180° et donc remet les voiles en position initiale(vent debout).
 	
 	if (Angle_Vent > 360.0 || Angle_Vent < 0.0) {
-		Duty_Cycle = 0;
+		Duty_Cycle = 0.0;
 	}
 	
+//	 if (Angle_Vent <= 45.0 || Angle_Vent >= 315.0)  {		
+//    Duty_Cycle = 10.0;
+//	}
+//	 if (Angle_Vent > 45.0 && Angle_Vent < 180.0) {
+//        Duty_Cycle = (-1/27)*Angle_Vent + (35/3); 
+//   }
+//		
+//	 if (Angle_Vent >= 180.0 && Angle_Vent < 315.0) {
+//        Duty_Cycle = (1/27)*Angle_Vent - (5/3); 
+//   }
 	if (Angle_Vent <= 45.0)  {
-        Duty_Cycle = 5;
+        Duty_Cycle = 10;
    }
    if (Angle_Vent > 45.0 && Angle_Vent < 70.0) {
-		Duty_Cycle = 6; 
+		Duty_Cycle = 9; 
 	}
 	if (Angle_Vent > 70.0 && Angle_Vent < 95.0) {
-		Duty_Cycle = 7; 
+		Duty_Cycle = 8; 
 	}
 	if (Angle_Vent > 95.0 && Angle_Vent < 120.0) {
-		Duty_Cycle = 8; 
-	}
-   if (Angle_Vent > 120.0 && Angle_Vent < 145.0) {
-		Duty_Cycle = 9; 
-	}
-	if (Angle_Vent > 145.0 && Angle_Vent < 200.0) {
-		Duty_Cycle = 10; 
-	}
-	if (Angle_Vent > 200.0 && Angle_Vent < 225.0) {
-		Duty_Cycle = 9; 
-	}
-	if (Angle_Vent > 225.0 && Angle_Vent < 250.0) {
-		Duty_Cycle = 8; 
-	}
-   if (Angle_Vent > 250.0 && Angle_Vent < 275.0) {
 		Duty_Cycle = 7; 
 	}
-	if (Angle_Vent > 275.0 && Angle_Vent < 300.0) {
+   if (Angle_Vent > 120.0 && Angle_Vent < 145.0) {
 		Duty_Cycle = 6; 
 	}
+	if (Angle_Vent > 145.0 && Angle_Vent < 200.0) {
+		Duty_Cycle = 5; 
+	}
+	if (Angle_Vent > 200.0 && Angle_Vent < 225.0) {
+		Duty_Cycle = 6; 
+	}
+	if (Angle_Vent > 225.0 && Angle_Vent < 250.0) {
+		Duty_Cycle = 7; 
+	}
+   if (Angle_Vent > 250.0 && Angle_Vent < 275.0) {
+		Duty_Cycle = 8; 
+	}
+	if (Angle_Vent > 275.0 && Angle_Vent < 300.0) {
+		Duty_Cycle = 9; 
+	}
 	if (Angle_Vent >= 300.0)  {
-        Duty_Cycle = 5;
+        Duty_Cycle = 10;
    }
 
 	
@@ -73,11 +86,6 @@ float Calcul_DutyCycle_SERVOMTR(float Angle_Vent) {
     //Duty_Cycle = 10;
    //}
 
-
-
-
-   
-	
    //	if (Angle_Vent > 45.0 && Angle_Vent < 315.0) {
    //		Duty_Cycle = (1/80)*Angle_Vent + 5.25; 
    //	}
@@ -106,10 +114,13 @@ float Calcul_DutyCycle_SERVOMTR(float Angle_Vent) {
 	//return (100 - DC);
 	
 	
-	return (int)Duty_Cycle;
+	return Duty_Cycle;
 }
+	
+
+//Commande du Servomoteur à l'aide de la PWN
 void Commande_SERVOMTR(float Angle_girouette) {
 	
 	 Timer_PWM_DutyCycle_Fix(TIM1, Calcul_DutyCycle_SERVOMTR(Angle_girouette), 1);
+	
 }
-

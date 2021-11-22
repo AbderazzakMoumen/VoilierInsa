@@ -4,13 +4,21 @@
 #include "GPIO.h"
 #include "ADC.h"
 
-//On configure PC2 en mode analog input et on initialise ADC
+
+//Initialisation de la mesure de la tension de la batterie
 void MyBatterie_Init(void);
 
-//On recoit la valeur de la conversion
-int Charge_Batterie(void);
 
-void Send_Perc_Tension_Batterie(void);
+//Recuperation de la tension de la batterie à l'entrèe de l'ADC
+int ADC_Batterie_Charge(void);
+
+
+//Recuperation de la tension de la batterie en VOLTS
+unsigned int Batterie_Voltage(void);
+
+
+//Calcul du pourcentage de la batterie restante
+unsigned int Batterie_Percentage(void);
 
 
 #endif

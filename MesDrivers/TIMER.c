@@ -151,7 +151,7 @@ void Timer_PWM_Init(TIM_TypeDef *Timer, float Duree, int Channel){
 				 break;
 		 
  }
-// Enable bit MOE si Timer 1
+	// Enable bit MOE si Timer 1
 	if (Timer == TIM1) {
 		Timer->BDTR |= (0x1 << 15);
 	}
@@ -185,7 +185,33 @@ void Timer_PWM_DutyCycle_Fix(TIM_TypeDef *Timer, int Duty_Cycle, int Channel){
      }
  }
 
- 
 
+//	 Fixer la le rapport cyclique de la PWM (Version 2 pour le SERVOMTR)
+void Timer_PWM_DutyCycle_Fix2(TIM_TypeDef *Timer, float Duty_Cycle, int Channel){
+     int Arr;
+     if ((Duty_Cycle <= 100) && (Duty_Cycle >= 0)) {
+			 
+       Arr = Timer->ARR;
+			 
+			 switch (Channel) {
+				 case 1:
+                     Timer->CCR1 = (int)((Arr*Duty_Cycle)/100.0);
+				     break;
+
+				 case 2:
+                     Timer->CCR2 = (int)((Arr*Duty_Cycle)/100.0);
+				     break;
+
+				 case 3:
+                     Timer->CCR3 = (int)((Arr*Duty_Cycle)/100.0);
+				     break;
+
+				 case 4:
+                     Timer->CCR4 = (int)((Arr*Duty_Cycle)/100.0);
+				     break;
+			 }
+     }
+ }
+ 
 
 

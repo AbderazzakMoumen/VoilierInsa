@@ -15,6 +15,7 @@ void Init_PLATEAUMTR(void) {
 	// Le signal PWM est de fréquence 20kHz donc la durée est de 50 us
 	Timer_PWM_Init(TIM2, 50, 2);
 	Timer_Start(TIM2);
+	
 }
 
 
@@ -37,4 +38,3 @@ void Commande_PLATEAUMTR(void) {
 	Timer_PWM_DutyCycle_Fix(TIM2, (Duty_cycle), 2);
 
 }
-
