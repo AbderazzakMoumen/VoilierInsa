@@ -413,6 +413,11 @@
               <FileType>1</FileType>
               <FilePath>.\MesServices\BATTERIE.c</FilePath>
             </File>
+            <File>
+              <FileName>TELECOMMANDE.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MesServices\TELECOMMANDE.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

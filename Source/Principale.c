@@ -33,7 +33,7 @@ void Start(void){
 
 int main(void){
 
-    start();
+  Start();
 	while(1)
 		{
 

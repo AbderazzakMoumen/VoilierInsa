@@ -33,7 +33,7 @@ void SEND_INTRODUCTION(void){
 	char MES1[]="\n";
 	char MES2[]="CONFIGURATION VOILIER EN COURS\n";
 	char MES3[]="\n";
-	char MES4[]="TOURNEZ GIROUETTE POUR CONTINUER\n";
+	char MES4[]="TOURNEZ GIROUETTE POUR AVANCER\n";
 	
 	Send_Chaine(MES0);
 	Send_Chaine(MES1);

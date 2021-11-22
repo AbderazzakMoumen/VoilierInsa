@@ -4,6 +4,7 @@
 ".\objects\servomtr.o"
 ".\objects\plateaumtr.o"
 ".\objects\batterie.o"
+".\objects\telecommande.o"
 ".\objects\gpio.o"
 ".\objects\timer.o"
 ".\objects\adc.o"
