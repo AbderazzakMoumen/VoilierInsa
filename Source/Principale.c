@@ -27,6 +27,7 @@ void Start(void){
 	SEND_FIN_CONFIGURATION(); //Envoi fin configuration à la tablette
 	Percentage_Batterie = Batterie_Percentage(); //Recupere le pourcentage de batterie restant
 	Send_Percentage_Batterie(Percentage_Batterie); //Envoi du pourcentage de batterie restant à la tablette
+	SEND_ALLERTE(Percentage_Batterie);
 
 }
 

@@ -21,7 +21,7 @@ void SEND_FIN_CONFIGURATION(void);
 
 
 //Envoi de l'allure en temps réel du Voilier
-void SEND_ALLURE(float theta);
+void SEND_ALLURE(float Perce);
 
 //Fonction de delay
 void delay(int a);
