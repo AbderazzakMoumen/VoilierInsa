@@ -119,9 +119,9 @@ void SEND_ALLURE(float theta){
 
 }
 
-void SEND_ALLERTE(void){
+void SEND_ALLERTE(float Perce){
 
-     if (Percentage_Batterie < 50)
+     if (Perce< 50)
        {
 	char MESS10[]="ALERTE : Le niveau de batterie est faible\n";
 	Send_Chaine(MESS10);
