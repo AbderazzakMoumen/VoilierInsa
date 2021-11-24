@@ -12,3 +12,4 @@
 .\objects\telecommande.o: .\Include\TIMER.h
 .\objects\telecommande.o: .\Include\GPIO.h
 .\objects\telecommande.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\telecommande.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
