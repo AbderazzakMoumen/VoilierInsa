@@ -67,26 +67,77 @@ void SEND_FIN_CONFIGURATION(void){
 //Envoi de l'allure en temps réel du Voilier
 void SEND_ALLURE(float theta){
 
-	if ((0<=theta && theta<40) || (theta >=320) ){
+	if ((0<=theta && theta<40) || (theta >=320) )
+	    {
 				
 		char MESS1[]="Le voilier navigue au Vent Debut\n";
 		Send_Chaine(MESS1);
 		
 		}
-		else if ((40<= theta && theta<50) || (theta>=310 &&  theta < 320)) {
+	else if ((40<= theta && theta<50) || (theta>=310 &&  theta < 320)) {
 			char MESS2[]="Le voilier navigue au Pres\n";
 			Send_Chaine(MESS2);
 		}
-		 else if ((50<= theta &&  theta<65) || (theta >= 295 && theta < 310))
+	else if ((50<= theta &&  theta<65) || (theta >= 295 && theta < 310))
 		 {
 			char MESS3[]="Le voilier navigue au Bon Plein\n";
 			Send_Chaine(MESS3);
 
 		 }
-		else if ((65<= theta && theta<90) || (theta>270 && theta <= 295))
+	else if ((65<= theta && theta<90) || (theta>270 && theta <= 295))
 		{
 			char MESS4[]="Le voilier navigue au Petit Largue\n";
 			Send_Chaine(MESS4);
 		}
+    else if ((90 == theta) || (theta ==270))
+		{
+			char MESS5[]="Le voilier navigue au Travers\n";
+			Send_Chaine(MESS4);
+		}
+	else if ((90 < theta && theta < 115) || (theta >= 245 && theta < 270))
+		{
+			char MESS6[]="Le voilier navigue au Largue\n";
+			Send_Chaine(MESS6);
+		}
+	else if ((115 <= theta && theta < 155) || (theta >= 205 && theta < 245))
+		{
+			char MESS7[]="Le voilier navigue au Grand Largue\n";
+			Send_Chaine(MESS7);
+		}
+	else if ((theta <= 205) && (theta >= 155))
+		{
+			char MESS8[]="Le voilier navigue au Vent Arriere\n";
+			Send_Chaine(MESS8);
+		}
+	else
+		{
+			char MESS9[]="Le voilier navigue au Vent Arriere\n";
+			Send_Chaine(MESS9);
+		}
+		//sleep(3);
+		delay(3);
 
+}
+
+void SEND_ALLERTE(void){
+
+     if (Percentage_Batterie < 50)
+       {
+	char MESS10[]="ALERTE : Le niveau de batterie est faible\n";
+	Send_Chaine(MESS10);
+       }
+}
+
+void delay(int a){
+
+     int add;
+     int time;
+     int i;
+
+     time = a * 1000000000;
+     for(i=0;i<time;i++){
+     	add*=i;
+     	add++;
+     	add++;
+     }
 }
