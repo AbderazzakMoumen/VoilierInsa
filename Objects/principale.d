@@ -17,4 +17,3 @@
 .\objects\principale.o: .\Include\BATTERIE.h
 .\objects\principale.o: .\Include\ADC.h
 .\objects\principale.o: .\Include\TELECOMMANDE.h
-.\objects\principale.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

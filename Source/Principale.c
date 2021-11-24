@@ -18,7 +18,7 @@ void Start(void){
 	//Demarrage de la configuration du voilier 
 	MYUSART_Config_OUT(); //Configuration USART en OUTPUT
 	SEND_INTRODUCTION();  //Envoi introduction à la tablette
-	Conf_Girouette();	  //Configuration Girouette
+	//Conf_Girouette();	  //Configuration Girouette
 	Init_SERVOMTR();	  //Configuration Servomoteur (Commande voiles) 
 	Init_PLATEAUMTR();	  //Configuration Moteur CC   (Commande plateau)
 	MYUSART_Config();     //Configuration USART en INPUT
@@ -41,6 +41,7 @@ int main(void){
 			theta = Get_Angle_Girouette();
 			Commande_SERVOMTR(theta);
 			SEND_ALLURE(theta);
+			//delay(2);
 
 		}
 		return 0;

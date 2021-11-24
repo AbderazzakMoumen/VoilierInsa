@@ -92,7 +92,7 @@ void SEND_ALLURE(float theta){
     else if ((90 == theta) || (theta ==270))
 		{
 			char MESS5[]="Le voilier navigue au Travers\n";
-			Send_Chaine(MESS4);
+			Send_Chaine(MESS5);
 		}
 	else if ((90 < theta && theta < 115) || (theta >= 245 && theta < 270))
 		{
@@ -119,15 +119,20 @@ void SEND_ALLURE(float theta){
 
 }
 
+
+//Envoi allerte batterie faible
 void SEND_ALLERTE(float Perce){
 
-     if (Perce< 50)
-       {
-	char MESS10[]="ALERTE : Le niveau de batterie est faible\n";
-	Send_Chaine(MESS10);
-       }
+     if (Perce< 50){
+			 
+					char MESS10[]="ALLERTE: Le niveau de batterie est faible !\n";
+					Send_Chaine(MESS10);
+			 
+     }
 }
 
+
+//Fonction de Delay
 void delay(int a){
 
      int add;

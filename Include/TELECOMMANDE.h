@@ -2,10 +2,7 @@
 #define TELECOMMANDE_H
 
 #include "USART.h"
-#include "stdio.h"
-#include "conio.h"
-//#include "stdlib.h"
-//#include "unistd.h"
+
 
 
 //Envoi du pourcentage de la batterie restante à la tablette
@@ -23,7 +20,10 @@ void SEND_FIN_CONFIGURATION(void);
 //Envoi de l'allure en temps réel du Voilier
 void SEND_ALLURE(float Perce);
 
-//Fonction de delay
+//Envoi allerte batterie faible
+void SEND_ALLERTE(float Perce);
+
+//Fonction de Delay
 void delay(int a);
 
 
