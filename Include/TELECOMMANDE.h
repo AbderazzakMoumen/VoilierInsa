@@ -2,10 +2,10 @@
 #define TELECOMMANDE_H
 
 #include "USART.h"
-#include <stdio.h>
-#include <conio.h>
-//#include <stdlib.h>
-//#include <unistd.h>
+#include "stdio.h"
+#include "conio.h"
+//#include "stdlib.h"
+//#include "unistd.h"
 
 
 //Envoi du pourcentage de la batterie restante à la tablette
