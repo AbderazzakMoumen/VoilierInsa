@@ -41,7 +41,6 @@ int main(void){
 			theta = Get_Angle_Girouette();
 			Commande_SERVOMTR(theta);
 			SEND_ALLURE(theta);
-			//delay(2);
 
 		}
 		return 0;

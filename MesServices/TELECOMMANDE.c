@@ -114,8 +114,8 @@ void SEND_ALLURE(float theta){
 			char MESS9[]="Le voilier navigue au Vent Arriere\n";
 			Send_Chaine(MESS9);
 		}
-		//sleep(3);
-		delay(3);
+
+		delay(100);
 
 }
 
@@ -132,17 +132,22 @@ void SEND_ALLERTE(float Perce){
 }
 
 
-//Fonction de Delay
-void delay(int a){
+////Fonction de Delay
+void delay(uint16_t delay)
+{
+  volatile unsigned int num;
+  for (num = 0; num < delay; num++)
+  {
+			volatile unsigned int num;
+			volatile unsigned int t;
 
-     int add;
-     int time;
-     int i;
-
-     time = a * 1000000000;
-     for(i=0;i<time;i++){
-     	add*=i;
-     	add++;
-     	add++;
-     }
+			for (num = 0; num < 1000; num++)
+			{
+				t = 11;
+				while (t != 0)
+				{
+					t--;
+				}
+			}
+  }
 }

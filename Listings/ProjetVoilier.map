@@ -68,7 +68,7 @@ Section Cross References
     telecommande.o(i.SEND_ALLURE) refers to cfcmple.o(.text) for __aeabi_cfcmple
     telecommande.o(i.SEND_ALLURE) refers to memcpya.o(.text) for __aeabi_memcpy4
     telecommande.o(i.SEND_ALLURE) refers to usart.o(i.Send_Chaine) for Send_Chaine
-    telecommande.o(i.SEND_ALLURE) refers to telecommande.o(i.delay) for delay
+    telecommande.o(i.SEND_ALLURE) refers to telecommande.o(i.delay_ms) for delay_ms
     telecommande.o(i.SEND_FIN_CONFIGURATION) refers to memcpya.o(.text) for __aeabi_memcpy4
     telecommande.o(i.SEND_FIN_CONFIGURATION) refers to usart.o(i.Send_Chaine) for Send_Chaine
     telecommande.o(i.SEND_INTRODUCTION) refers to memcpya.o(.text) for __aeabi_memcpy4
@@ -375,9 +375,9 @@ Image Symbol Table
     i.__scatterload_copy                     0x0800179e   Section       14  handlers.o(i.__scatterload_copy)
     i.__scatterload_null                     0x080017ac   Section        2  handlers.o(i.__scatterload_null)
     i.__scatterload_zeroinit                 0x080017ae   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i.delay                                  0x080017bc   Section        0  telecommande.o(i.delay)
-    i.floor                                  0x080017dc   Section        0  floor.o(i.floor)
-    i.main                                   0x080018b8   Section        0  principale.o(i.main)
+    i.delay_ms                               0x080017bc   Section        0  telecommande.o(i.delay_ms)
+    i.floor                                  0x080017f8   Section        0  floor.o(i.floor)
+    i.main                                   0x080018d4   Section        0  principale.o(i.main)
     .data                                    0x20000000   Section        8  principale.o(.data)
     .data                                    0x20000008   Section        4  timer.o(.data)
     .data                                    0x2000000c   Section        4  usart.o(.data)
@@ -535,11 +535,11 @@ Image Symbol Table
     __scatterload_copy                       0x0800179f   Thumb Code    14  handlers.o(i.__scatterload_copy)
     __scatterload_null                       0x080017ad   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x080017af   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    delay                                    0x080017bd   Thumb Code    28  telecommande.o(i.delay)
-    floor                                    0x080017dd   Thumb Code   204  floor.o(i.floor)
-    main                                     0x080018b9   Thumb Code    32  principale.o(i.main)
-    Region$$Table$$Base                      0x080018dc   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080018fc   Number         0  anon$$obj.o(Region$$Table)
+    delay_ms                                 0x080017bd   Thumb Code    60  telecommande.o(i.delay_ms)
+    floor                                    0x080017f9   Thumb Code   204  floor.o(i.floor)
+    main                                     0x080018d5   Thumb Code    32  principale.o(i.main)
+    Region$$Table$$Base                      0x080018f8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001918   Number         0  anon$$obj.o(Region$$Table)
     theta                                    0x20000000   Data           4  principale.o(.data)
     Percentage_Batterie                      0x20000004   Data           4  principale.o(.data)
     pFnc2                                    0x20000008   Data           4  timer.o(.data)
@@ -554,9 +554,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000105
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x0000190c, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00001928, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000018fc, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001918, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -642,22 +642,22 @@ Memory Map of the image
     0x0800179e   0x0800179e   0x0000000e   Code   RO          671    i.__scatterload_copy  mc_w.l(handlers.o)
     0x080017ac   0x080017ac   0x00000002   Code   RO          672    i.__scatterload_null  mc_w.l(handlers.o)
     0x080017ae   0x080017ae   0x0000000e   Code   RO          673    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x080017bc   0x080017bc   0x00000020   Code   RO          270    i.delay             telecommande.o
-    0x080017dc   0x080017dc   0x000000dc   Code   RO          598    i.floor             m_ws.l(floor.o)
-    0x080018b8   0x080018b8   0x00000024   Code   RO            5    i.main              principale.o
-    0x080018dc   0x080018dc   0x00000020   Data   RO          669    Region$$Table       anon$$obj.o
+    0x080017bc   0x080017bc   0x0000003c   Code   RO          270    i.delay_ms          telecommande.o
+    0x080017f8   0x080017f8   0x000000dc   Code   RO          598    i.floor             m_ws.l(floor.o)
+    0x080018d4   0x080018d4   0x00000024   Code   RO            5    i.main              principale.o
+    0x080018f8   0x080018f8   0x00000020   Data   RO          669    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080018fc, Size: 0x00000010, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08001918, Size: 0x00000010, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x080018fc   0x00000008   Data   RW            6    .data               principale.o
-    0x20000008   0x08001904   0x00000004   Data   RW          376    .data               timer.o
-    0x2000000c   0x08001908   0x00000004   Data   RW          486    .data               usart.o
+    0x20000000   0x08001918   0x00000008   Data   RW            6    .data               principale.o
+    0x20000008   0x08001920   0x00000004   Data   RW          376    .data               timer.o
+    0x2000000c   0x08001924   0x00000004   Data   RW          486    .data               usart.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000010, Load base: 0x0800190c, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000010, Load base: 0x08001928, Size: 0x00000400, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -680,12 +680,12 @@ Image component sizes
        568         64          0          0          0       1696   servomtr.o
         36          8        236          0       1024        808   startup_stm32f10x_md.o
        328         28          0          0          0       1977   system_stm32f10x.o
-      1348        596          0          0          0       4265   telecommande.o
+      1376        592          0          0          0       4328   telecommande.o
        570         46          0          4          0       4239   timer.o
        564         74          0          4          0       4668   usart.o
 
     ----------------------------------------------------------------------
-      4270        928        268         16       1024     232899   Object Totals
+      4298        924        268         16       1024     232962   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -750,15 +750,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      6128        960        268         16       1024     231919   Grand Totals
-      6128        960        268         16       1024     231919   ELF Image Totals
-      6128        960        268         16          0          0   ROM Totals
+      6156        956        268         16       1024     231982   Grand Totals
+      6156        956        268         16       1024     231982   ELF Image Totals
+      6156        956        268         16          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 6396 (   6.25kB)
+    Total RO  Size (Code + RO Data)                 6424 (   6.27kB)
     Total RW  Size (RW Data + ZI Data)              1040 (   1.02kB)
-    Total ROM Size (Code + RO Data + RW Data)       6412 (   6.26kB)
+    Total ROM Size (Code + RO Data + RW Data)       6440 (   6.29kB)
 
 ==============================================================================
 
